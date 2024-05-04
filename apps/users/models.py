@@ -14,12 +14,14 @@ class User(AbstractUser):
         auto_now_add=True
     )    
     password_confirm = models.CharField(
-        max_length=2,
+        max_length=255,
         verbose_name="Подтвердите пароль"
     )
-    wallet_adress = models.CharField(
-        max_length=6,
-        verbose_name="ID кошелка"
+    wallet_address = models.CharField(
+        max_length=12,
+        verbose_name="ID кошелка",
+        unique=True,
+        blank=True,
     )
     
     def __str__(self):

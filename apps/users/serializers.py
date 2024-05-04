@@ -1,26 +1,29 @@
 from rest_framework import serializers
-import re
+import re, random, string
 
 from apps.users.models import User
-
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     password_confirm = serializers.CharField(write_only=True)
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'age', 'email', 'phone', 'created_at', 'password', 'password_confirm','wallet_adress')
+        fields = ('id', 'username', 'age', 'email', 'phone', 'created_at', 'password', 'password_confirm', 'wallet_address')
         extra_kwargs = {
             'password': {'write_only': True},
             'password_confirm': {'write_only': True},
+            'wallet_address': {'read_only': True}
         }
 
     def create(self, validated_data):
         password = validated_data.pop('password')
         password_confirm = validated_data.pop('password_confirm')
-        
+    
         if password != password_confirm:
-            raise serializers.ValidationError("Пароли не сходятся!")
+            raise serializers.ValidationError("Пароли не совпадают!")
+        
+        wallet_address = ''.join(random.choices(string.ascii_uppercase + string.digits, k=12))
+        validated_data['wallet_address'] = wallet_address
 
         user = User.objects.create(**validated_data)
         user.set_password(password)
