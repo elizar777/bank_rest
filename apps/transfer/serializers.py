@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from apps.transfer.models import HistoryTransfer
-from apps.users.serializers import UserSerializer
+from .models import HistoryTransfer
 
 class HistoryTransferSerializer(serializers.ModelSerializer):
     class Meta:
