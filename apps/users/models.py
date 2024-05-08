@@ -17,6 +17,10 @@ class User(AbstractUser):
         max_length=255,
         verbose_name="Подтвердите пароль"
     )
+    balance = models.PositiveIntegerField(
+        default = 0,
+        verbose_name='Баланс'
+    )
     wallet_address = models.CharField(
         max_length=12,
         verbose_name="ID кошелка",

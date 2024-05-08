@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 api_urlpatterns = [
     path('users/', include('apps.users.urls')),
-    path('transferhystory', include('apps.transferhystory.urls'))
+    path('transfer', include('apps.transfer.urls'))
 ]
 
 urlpatterns = [
