@@ -4,15 +4,13 @@ from django.db import models
 from apps.users.models import User
 
 class HistoryTransfer(models.Model):
-    from_user = models.ForeignKey(
-        User, related_name='transfers_sent', 
-        on_delete=models.CASCADE, 
+    from_user = models.CharField(
+        max_length=255,
         verbose_name="От пользователя"
     )
-    to_user = models.ForeignKey(
-        User, related_name='transfers_received', 
-        on_delete=models.CASCADE, 
-        verbose_name="К пользователю"
+    to_user = models.CharField(
+        max_length=255,
+        verbose_name="К пользователя"
     )
     is_completed = models.BooleanField(
         default=False, 
