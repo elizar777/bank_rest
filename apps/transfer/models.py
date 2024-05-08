@@ -1,9 +1,7 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 
 # Create your models here.
-
-User = get_user_model()
+from apps.users.models import User
 
 class HistoryTransfer(models.Model):
     from_user = models.ForeignKey(
@@ -12,8 +10,7 @@ class HistoryTransfer(models.Model):
         verbose_name="От пользователя"
     )
     to_user = models.ForeignKey(
-        User, 
-        related_name='transfers_received', 
+        User, related_name='transfers_received', 
         on_delete=models.CASCADE, 
         verbose_name="К пользователю"
     )
