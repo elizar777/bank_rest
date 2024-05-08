@@ -1,10 +1,7 @@
 from django.contrib import admin
-
-# Register your models here.
-from django.contrib import admin
-from apps.transfer.models import HistoryTransfer
-# Register your models here.
+from .models import HistoryTransfer
 
 @admin.register(HistoryTransfer)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'from_user', 'to_user','is_completed', 'created_at', 'amount')
+class HistoryTransferAdmin(admin.ModelAdmin):
+    list_display = ('from_user', 'to_user', 'amount', 'is_completed', 'created_at')
+

@@ -37,7 +37,7 @@ class UserSerializer(serializers.ModelSerializer):
         return value
     
     def validate(self, attrs):
-        attrs = super().validate(attrs)
+        attrs = super().validate(attrs) 
         phone = attrs.get('phone')
         if phone:
             self.validate_phone(phone)
