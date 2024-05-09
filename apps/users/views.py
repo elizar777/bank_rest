@@ -2,7 +2,6 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-# from apps.users.permission import UserPermissions
 from apps.users.serializers import UserSerializer
 from apps.users.models import User
 
@@ -14,6 +13,8 @@ class UserAPI(GenericViewSet,
                  mixins.DestroyModelMixin):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    
+    permission_classes = (IsAuthenticated, )
     
     # def get_permissions(self):
     #     if self.action == 'retrive':

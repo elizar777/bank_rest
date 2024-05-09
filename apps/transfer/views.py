@@ -16,3 +16,5 @@ class TransferAPI(GenericViewSet,
                  mixins.DestroyModelMixin):
     queryset = HistoryTransfer.objects.all()
     serializer_class = HistoryTransferSerializer
+    
+    permission_classes = (IsAuthenticated, )
