@@ -19,10 +19,10 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         password = validated_data.pop('password')
         password_confirm = validated_data.pop('password_confirm')
-    
+
         if password != password_confirm:
             raise serializers.ValidationError("Пароли не совпадают!")
-        
+
         wallet_address = ''.join(random.choices(string.ascii_uppercase + string.digits, k=12))
         validated_data['wallet_address'] = wallet_address
 
@@ -30,6 +30,8 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+
     
     def validate_phone(self, value):
         if not re.match(r'^\+996\d{9}$', value):

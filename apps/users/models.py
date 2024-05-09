@@ -29,7 +29,7 @@ class User(AbstractUser):
     )
     
     def __str__(self):
-        return self.username
+        return f"""{self.wallet_address}            Имя пользователя: {self.username}"""
     
     class Meta:
         verbose_name = "Пользователь"
